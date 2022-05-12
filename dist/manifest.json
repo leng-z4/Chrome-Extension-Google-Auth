@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Google Sign-in Extension",
+  "description": "",
+  "version": "1.0.0",
+  "browser_action": {
+    "default_popup": "credentials.html"
+  },
+  "background": {
+    "persistent": false,
+    "scripts": ["bg_bundle.js"]
+  },
+  "permissions": [
+    "identity"
+  ],
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com 'unsafe-eval'; object-src 'self'",
+  "oauth2": {
+    "client_id": "952282702012-n7sh44ij9570b10fmprb0e45481femnd.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
+}
+
