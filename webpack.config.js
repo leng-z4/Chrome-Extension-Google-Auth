@@ -19,5 +19,6 @@ module.exports = {
 		path: `${__dirname}/dist`,
 		// 出力ファイル名
 		filename: "main_bundle.js"
-	}
+	},
+    devtool: 'cheap-module-source-map'
 };

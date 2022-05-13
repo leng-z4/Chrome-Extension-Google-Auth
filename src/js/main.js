@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithCredential, signInWithPopup, GoogleAuthProvider,} from 'firebase/auth';
 
 var config = {
     apiKey: "AIzaSyBrXJZqFFNoKwfM1Lre4nSVR-cbLj60RpQ",
@@ -42,16 +42,22 @@ function startAuth(interactive) {
         } else if (token) {
             var credential = GoogleAuthProvider.credential(token);
             console.log(credential);
+            /* signInWithPopup(auth, provider)
+            .then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error);
+            }); */
             signInWithCredential(credential)
             .then(result => {
                 console.log(result);
             }).catch(error => {
                 console.log(error);
-                /* if (error.code === 'auth/invalid-credential') {
+                if (error.code === 'auth/invalid-credential') {
                     chrome.identity.removeCachedAuthToken({ token: token }, function () {
                         startAuth(interactive);
                     });
-                } */
+                }
             });
         } else {
             console.error('The OAuth Token was null');
@@ -59,24 +65,26 @@ function startAuth(interactive) {
     });
 }
 
-auth.onAuthStateChanged(function (user) {
-    if (user) {
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        signin_button.style.display = "none";
-        signout_button.style.display = "block";
-        user_data.textContent = JSON.stringify(user);
-    } else {
-        console.log("a");
-        signin_button.style.display = "block";
-        signout_button.style.display = "none";
-        user_data.textContent = '';
-    }
-});
-signin_button.addEventListener('click', SignIn, false);
-signout_button.addEventListener('click', SiginOut);
+window.onload = function (params) {
+    auth.onAuthStateChanged(function (user) {
+        if (user) {
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            signin_button.style.display = "none";
+            signout_button.style.display = "block";
+            user_data.textContent = JSON.stringify(user);
+        } else {
+            console.log("w");
+            signin_button.style.display = "block";
+            signout_button.style.display = "none";
+            user_data.textContent = '';
+        }
+    });
+    signin_button.addEventListener('click', SignIn, false);
+    signout_button.addEventListener('click', SiginOut);
+}
