@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithCredential, signInWithPopup, GoogleAuthProvider,} from 'firebase/auth';
+import { getAuth, signInWithCredential, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 var config = {
     apiKey: "AIzaSyBrXJZqFFNoKwfM1Lre4nSVR-cbLj60RpQ",
@@ -12,6 +13,8 @@ var config = {
 initializeApp(config);
 
 const auth = getAuth();
+auth.languageCode = "ja";
+const db = getFirestore();
 const provider = new GoogleAuthProvider();
 
 const signin_button = document.getElementById('signin-button');
@@ -40,51 +43,47 @@ function startAuth(interactive) {
         } else if (chrome.runtime.lastError) {
             console.error(JSON.stringify(chrome.runtime.lastError));
         } else if (token) {
-            var credential = GoogleAuthProvider.credential(token);
-            console.log(credential);
-            /* signInWithPopup(auth, provider)
-            .then(result => {
-                console.log(result);
-            }).catch(error => {
-                console.log(error);
-            }); */
-            signInWithCredential(credential)
-            .then(result => {
-                console.log(result);
-            }).catch(error => {
-                console.log(error);
-                if (error.code === 'auth/invalid-credential') {
-                    chrome.identity.removeCachedAuthToken({ token: token }, function () {
-                        startAuth(interactive);
-                    });
-                }
-            });
+            var credential = GoogleAuthProvider.credential(null, token);
+            signInWithCredential(auth, credential)
+                .then(result => {
+                    console.log(result);
+                }).catch(error => {
+                    console.log(error);
+                    if (error.code === 'auth/invalid-credential') {
+                        chrome.identity.removeCachedAuthToken({ token: token }, function () {
+                            startAuth(interactive);
+                        });
+                    }
+                });
         } else {
             console.error('The OAuth Token was null');
         }
     });
 }
 
-window.onload = function (params) {
-    auth.onAuthStateChanged(function (user) {
-        if (user) {
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            signin_button.style.display = "none";
-            signout_button.style.display = "block";
-            user_data.textContent = JSON.stringify(user);
-        } else {
-            console.log("w");
-            signin_button.style.display = "block";
-            signout_button.style.display = "none";
-            user_data.textContent = '';
+auth.onAuthStateChanged(async function (user) {
+    if (user) {
+        var displayName = user.displayName;
+        var email = user.email;
+        var photoURL = user.photoURL;
+        var uid = user.uid;
+        signin_button.style.display = "none";
+        signout_button.style.display = "block";
+        user_data.textContent = JSON.stringify(user);
+        const user_data = await db.collection("users").doc(uid).get();
+        if (!user_data.exists) {
+            user_data.set({
+                name: displayName,
+                photo: photoURL,
+                id: uld
+            }, {merge:true});
         }
-    });
-    signin_button.addEventListener('click', SignIn, false);
-    signout_button.addEventListener('click', SiginOut);
-}
+    } else {
+        console.log("w");
+        signin_button.style.display = "block";
+        signout_button.style.display = "none";
+        user_data.textContent = '';
+    }
+});
+signin_button.addEventListener('click', SignIn, false);
+signout_button.addEventListener('click', SiginOut);
