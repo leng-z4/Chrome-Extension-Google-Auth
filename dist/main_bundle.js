@@ -33652,16 +33652,15 @@ var config = {
     messagingSenderId: "952282702012",
     appId: "1:952282702012:web:67946b673bdb189e8db0b9"
 };
-(0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(config);
+const app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(config);
 
 const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
 auth.languageCode = "ja";
-const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)();
-const provider = new firebase_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuthProvider();
+const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getFirestore)(app);
 
 const signin_button = document.getElementById('signin-button');
 const signout_button = document.getElementById('signout-button');
-const user_data = document.getElementById('user_data');
+const user_data_log = document.getElementById('user_data');
 
 function SignIn() {
     startAuth(true);
@@ -33686,17 +33685,14 @@ function startAuth(interactive) {
             console.error(JSON.stringify(chrome.runtime.lastError));
         } else if (token) {
             var credential = firebase_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuthProvider.credential(null, token);
-            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithCredential)(auth, credential)
-                .then(result => {
-                    console.log(result);
-                }).catch(error => {
-                    console.log(error);
-                    if (error.code === 'auth/invalid-credential') {
-                        chrome.identity.removeCachedAuthToken({ token: token }, function () {
-                            startAuth(interactive);
-                        });
-                    }
-                });
+            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithCredential)(auth, credential).catch(error => {
+                console.log(error);
+                if (error.code === 'auth/invalid-credential') {
+                    chrome.identity.removeCachedAuthToken({ token: token }, function () {
+                        startAuth(interactive);
+                    });
+                }
+            });
         } else {
             console.error('The OAuth Token was null');
         }
@@ -33711,17 +33707,17 @@ auth.onAuthStateChanged(async function (user) {
         var uid = user.uid;
         signin_button.style.display = "none";
         signout_button.style.display = "block";
-        user_data.textContent = JSON.stringify(user);
-        const user_data = await db.collection("users").doc(uid).get();
-        if (!user_data.exists) {
-            user_data.set({
+        user_data_log.textContent = JSON.stringify(user);
+        const user_data = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.getDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.doc)(db, 'users', uid));
+        if (!(user_data.exists())) {
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.setDoc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_2__.collection)(db, 'users'), uid), {
                 name: displayName,
+                mail: email,
                 photo: photoURL,
-                id: uld
-            }, {merge:true});
+                id: uid
+            });
         }
     } else {
-        console.log("w");
         signin_button.style.display = "block";
         signout_button.style.display = "none";
         user_data.textContent = '';

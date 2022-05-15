@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithCredential, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getAuth, signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore, getDoc, setDoc, collection, doc } from 'firebase/firestore';
 
 var config = {
     apiKey: "AIzaSyBrXJZqFFNoKwfM1Lre4nSVR-cbLj60RpQ",
@@ -10,16 +10,15 @@ var config = {
     messagingSenderId: "952282702012",
     appId: "1:952282702012:web:67946b673bdb189e8db0b9"
 };
-initializeApp(config);
+const app = initializeApp(config);
 
 const auth = getAuth();
 auth.languageCode = "ja";
-const db = getFirestore();
-const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 const signin_button = document.getElementById('signin-button');
 const signout_button = document.getElementById('signout-button');
-const user_data = document.getElementById('user_data');
+const user_data_log = document.getElementById('user_data');
 
 function SignIn() {
     startAuth(true);
@@ -44,17 +43,14 @@ function startAuth(interactive) {
             console.error(JSON.stringify(chrome.runtime.lastError));
         } else if (token) {
             var credential = GoogleAuthProvider.credential(null, token);
-            signInWithCredential(auth, credential)
-                .then(result => {
-                    console.log(result);
-                }).catch(error => {
-                    console.log(error);
-                    if (error.code === 'auth/invalid-credential') {
-                        chrome.identity.removeCachedAuthToken({ token: token }, function () {
-                            startAuth(interactive);
-                        });
-                    }
-                });
+            signInWithCredential(auth, credential).catch(error => {
+                console.log(error);
+                if (error.code === 'auth/invalid-credential') {
+                    chrome.identity.removeCachedAuthToken({ token: token }, function () {
+                        startAuth(interactive);
+                    });
+                }
+            });
         } else {
             console.error('The OAuth Token was null');
         }
@@ -69,17 +65,17 @@ auth.onAuthStateChanged(async function (user) {
         var uid = user.uid;
         signin_button.style.display = "none";
         signout_button.style.display = "block";
-        user_data.textContent = JSON.stringify(user);
-        const user_data = await db.collection("users").doc(uid).get();
-        if (!user_data.exists) {
-            user_data.set({
+        user_data_log.textContent = JSON.stringify(user);
+        const user_data = await getDoc(doc(db, 'users', uid));
+        if (!(user_data.exists())) {
+            await setDoc(doc(collection(db, 'users'), uid), {
                 name: displayName,
+                mail: email,
                 photo: photoURL,
-                id: uld
-            }, {merge:true});
+                id: uid
+            });
         }
     } else {
-        console.log("w");
         signin_button.style.display = "block";
         signout_button.style.display = "none";
         user_data.textContent = '';
