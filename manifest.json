@@ -15,7 +15,7 @@
     ],
     "content_security_policy": "script-src 'self' https://apis.google.com/; object-src 'self'",
     "oauth2": {
-      "client_id": "952282702012-b9e73sdrg2p0r9vlcrfminvn39er2t4f.apps.googleusercontent.com",
+      "client_id": "your client id",
       "scopes": [
         "https://www.googleapis.com/auth/userinfo.email",
         "https://www.googleapis.com/auth/userinfo.profile"

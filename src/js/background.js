@@ -2,12 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 var config = {
-	apiKey: "AIzaSyBrXJZqFFNoKwfM1Lre4nSVR-cbLj60RpQ",
-	authDomain: "cegl-id.firebaseapp.com",
-	projectId: "cegl-id",
-	storageBucket: "cegl-id.appspot.com",
-	messagingSenderId: "952282702012",
-	appId: "1:952282702012:web:67946b673bdb189e8db0b9"
+	/* your config data */
 };
 initializeApp(config);
 

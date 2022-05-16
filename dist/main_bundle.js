@@ -33645,12 +33645,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var config = {
-    apiKey: "AIzaSyBrXJZqFFNoKwfM1Lre4nSVR-cbLj60RpQ",
-    authDomain: "cegl-id.firebaseapp.com",
-    projectId: "cegl-id",
-    storageBucket: "cegl-id.appspot.com",
-    messagingSenderId: "952282702012",
-    appId: "1:952282702012:web:67946b673bdb189e8db0b9"
+    /* your config data */
 };
 const app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(config);
 
