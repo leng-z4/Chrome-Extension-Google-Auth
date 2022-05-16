@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "name": "Google Sign-in Extension",
+    "name": "Google Api Extension",
     "description": "",
     "version": "1.0.0",
     "browser_action": {
