@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Google Api Extension",
+  "name": "Chrome Extension Google Api",
   "description": "",
   "version": "1.0.0",
   "browser_action": {
