@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Chrome Extension Google Api",
+  "name": "Chrome Extension Google Auth",
   "description": "",
   "version": "1.0.0",
   "browser_action": {

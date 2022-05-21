@@ -1,5 +1,5 @@
 {
-    "name": "chromextension",
+    "name": "chrome-extension-google-auth",
     "version": "1.0.0",
     "description": "Firebase Auth w/ Google Sign-In in Chrome Extensions ====================================================",
     "main": "background.js",
