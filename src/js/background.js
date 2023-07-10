@@ -2,7 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 var config = {
-	/* your config data */
+    apiKey: "AIzaSyCoR1FGtRhfHG_IeYvZKgYJdRhxfEqiOdc",
+    authDomain: "cewf-id.firebaseapp.com",
+    projectId: "cewf-id",
+    storageBucket: "cewf-id.appspot.com",
+    messagingSenderId: "399762600225",
+    appId: "1:399762600225:web:9b21abc20016f5f2280e60"
 };
 initializeApp(config);
 
@@ -14,6 +19,6 @@ function initApp() {
 	});
 }
 
-chrome.browserAction.onClicked.addListener(function () {
+chrome.action.onClicked.addListener(function () {
 	initApp();
 });

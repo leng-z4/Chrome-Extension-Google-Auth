@@ -1,25 +1,26 @@
 {
-  "manifest_version": 2,
-  "name": "Chrome Extension Google Auth",
-  "description": "",
-  "version": "1.0.0",
-  "browser_action": {
-    "default_popup": "credentials.html"
-  },
-  "background": {
-    "persistent": false,
-    "scripts": ["bg_bundle.js"]
-  },
-  "permissions": [
-    "identity"
-  ],
-  "content_security_policy": "script-src 'self' https://apis.google.com/; object-src 'self'",
-  "oauth2": {
-    "client_id": "your client id",
-    "scopes": [
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile"
-    ]
-  }
+    "manifest_version": 3,
+    "name": "Chrome Extension Google Auth",
+    "description": "",
+    "version": "1.0.0",
+    "background": {
+        "service_worker": "bg_bundle.js"
+    },
+    "permissions": [
+        "identity"
+    ],
+    "action": {
+        "default_popup": "credentials.html"
+    },
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'",
+        "sandbox": "sandbox allow-scripts; script-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com; object-src 'self'"
+    },
+    "oauth2": {
+        "client_id": "399762600225-74d1ag6tf9j8od0p0605e4u4rebcka6l.apps.googleusercontent.com",
+        "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile"
+        ]
+    }
 }
-

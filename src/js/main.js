@@ -3,7 +3,12 @@ import { getAuth, signInWithCredential, GoogleAuthProvider } from 'firebase/auth
 import { getFirestore, getDoc, setDoc, collection, doc } from 'firebase/firestore';
 
 var config = {
-    /* your config data */
+    apiKey: "AIzaSyCoR1FGtRhfHG_IeYvZKgYJdRhxfEqiOdc",
+    authDomain: "cewf-id.firebaseapp.com",
+    projectId: "cewf-id",
+    storageBucket: "cewf-id.appspot.com",
+    messagingSenderId: "399762600225",
+    appId: "1:399762600225:web:9b21abc20016f5f2280e60"
 };
 const app = initializeApp(config);
 
@@ -37,6 +42,7 @@ function startAuth(interactive) {
         } else if (chrome.runtime.lastError) {
             console.error(JSON.stringify(chrome.runtime.lastError));
         } else if (token) {
+            console.log(token);
             var credential = GoogleAuthProvider.credential(null, token);
             signInWithCredential(auth, credential).catch(error => {
                 console.log(error);
@@ -61,7 +67,7 @@ auth.onAuthStateChanged(async function (user) {
         signin_button.style.display = "none";
         signout_button.style.display = "block";
         user_data_log.textContent = JSON.stringify(user);
-        const user_data = await getDoc(doc(db, 'users', uid));
+        /* const user_data = await getDoc(doc(db, 'users', uid));
         if (!(user_data.exists())) {
             await setDoc(doc(collection(db, 'users'), uid), {
                 name: displayName,
@@ -69,12 +75,12 @@ auth.onAuthStateChanged(async function (user) {
                 photo: photoURL,
                 id: uid
             });
-        }
+        } */
     } else {
         signin_button.style.display = "block";
         signout_button.style.display = "none";
         user_data.textContent = '';
     }
-});
+})
 signin_button.addEventListener('click', SignIn, false);
 signout_button.addEventListener('click', SiginOut);

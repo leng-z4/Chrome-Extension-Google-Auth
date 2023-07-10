@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/@firebase/auth/dist/esm2017/index-3b632d0b.js":
+/***/ "./node_modules/@firebase/auth/dist/esm2017/index-ccf9d100.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@firebase/auth/dist/esm2017/index-3b632d0b.js ***!
+  !*** ./node_modules/@firebase/auth/dist/esm2017/index-ccf9d100.js ***!
   \********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -1081,6 +1081,9 @@ async function _performFetchWithErrorHandling(auth, customErrorMap, fetchFn) {
             }
             else if (serverErrorCode === "EMAIL_EXISTS" /* EMAIL_EXISTS */) {
                 throw _makeTaggedError(auth, "email-already-in-use" /* EMAIL_EXISTS */, json);
+            }
+            else if (serverErrorCode === "USER_DISABLED" /* USER_DISABLED */) {
+                throw _makeTaggedError(auth, "user-disabled" /* USER_DISABLED */, json);
             }
             const authError = errorMap[serverErrorCode] ||
                 serverErrorCode
@@ -5774,13 +5777,17 @@ function setPersistence(auth, persistence) {
     return (0,_firebase_util__WEBPACK_IMPORTED_MODULE_0__.getModularInstance)(auth).setPersistence(persistence);
 }
 /**
- * Adds an observer for changes to the signed-in user's ID token, which includes sign-in,
- * sign-out, and token refresh events.
+ * Adds an observer for changes to the signed-in user's ID token.
+ *
+ * @remarks
+ * This includes sign-in, sign-out, and token refresh events.
  *
  * @param auth - The {@link Auth} instance.
  * @param nextOrObserver - callback triggered on change.
- * @param error - callback triggered on error.
- * @param completed - callback triggered when observer is removed.
+ * @param error - Deprecated. This callback is never triggered. Errors
+ * on signing in/out can be caught in promises returned from
+ * sign-in/sign-out functions.
+ * @param completed - Deprecated. This callback is never triggered.
  *
  * @public
  */
@@ -5808,8 +5815,10 @@ function beforeAuthStateChanged(auth, callback, onAbort) {
  *
  * @param auth - The {@link Auth} instance.
  * @param nextOrObserver - callback triggered on change.
- * @param error - callback triggered on error.
- * @param completed - callback triggered when observer is removed.
+ * @param error - Deprecated. This callback is never triggered. Errors
+ * on signing in/out can be caught in promises returned from
+ * sign-in/sign-out functions.
+ * @param completed - Deprecated. This callback is never triggered.
  *
  * @public
  */
@@ -9387,7 +9396,7 @@ class PhoneMultiFactorGenerator {
 PhoneMultiFactorGenerator.FACTOR_ID = 'phone';
 
 var name = "@firebase/auth";
-var version = "0.20.1";
+var version = "0.20.2";
 
 /**
  * @license
@@ -9578,7 +9587,7 @@ function getAuth(app = (0,_firebase_app__WEBPACK_IMPORTED_MODULE_1__.getApp)()) 
 registerAuth("Browser" /* BROWSER */);
 
 
-//# sourceMappingURL=index-3b632d0b.js.map
+//# sourceMappingURL=index-ccf9d100.js.map
 
 
 /***/ }),
@@ -9591,87 +9600,87 @@ registerAuth("Browser" /* BROWSER */);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ActionCodeOperation": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.A),
-/* harmony export */   "ActionCodeURL": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ad),
-/* harmony export */   "AuthCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.H),
-/* harmony export */   "AuthErrorCodes": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.D),
-/* harmony export */   "EmailAuthCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.I),
-/* harmony export */   "EmailAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.M),
-/* harmony export */   "FacebookAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.N),
-/* harmony export */   "FactorId": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.F),
-/* harmony export */   "GithubAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.T),
-/* harmony export */   "GoogleAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.Q),
-/* harmony export */   "OAuthCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.J),
-/* harmony export */   "OAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.U),
-/* harmony export */   "OperationType": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.O),
-/* harmony export */   "PhoneAuthCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.K),
-/* harmony export */   "PhoneAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.P),
-/* harmony export */   "PhoneMultiFactorGenerator": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.m),
-/* harmony export */   "ProviderId": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.o),
-/* harmony export */   "RecaptchaVerifier": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.R),
-/* harmony export */   "SAMLAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.V),
-/* harmony export */   "SignInMethod": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.S),
-/* harmony export */   "TwitterAuthProvider": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.W),
-/* harmony export */   "applyActionCode": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a2),
-/* harmony export */   "beforeAuthStateChanged": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.t),
-/* harmony export */   "browserLocalPersistence": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.b),
-/* harmony export */   "browserPopupRedirectResolver": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.k),
-/* harmony export */   "browserSessionPersistence": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a),
-/* harmony export */   "checkActionCode": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a3),
-/* harmony export */   "confirmPasswordReset": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a1),
-/* harmony export */   "connectAuthEmulator": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.G),
-/* harmony export */   "createUserWithEmailAndPassword": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a5),
-/* harmony export */   "debugErrorMap": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.B),
-/* harmony export */   "deleteUser": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.z),
-/* harmony export */   "fetchSignInMethodsForEmail": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.aa),
-/* harmony export */   "getAdditionalUserInfo": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.al),
-/* harmony export */   "getAuth": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.n),
-/* harmony export */   "getIdToken": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ai),
-/* harmony export */   "getIdTokenResult": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.aj),
-/* harmony export */   "getMultiFactorResolver": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.an),
-/* harmony export */   "getRedirectResult": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.j),
-/* harmony export */   "inMemoryPersistence": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.L),
-/* harmony export */   "indexedDBLocalPersistence": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.i),
-/* harmony export */   "initializeAuth": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.E),
-/* harmony export */   "isSignInWithEmailLink": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a8),
-/* harmony export */   "linkWithCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.Z),
-/* harmony export */   "linkWithPhoneNumber": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.l),
-/* harmony export */   "linkWithPopup": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.d),
-/* harmony export */   "linkWithRedirect": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.g),
-/* harmony export */   "multiFactor": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ao),
-/* harmony export */   "onAuthStateChanged": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.v),
-/* harmony export */   "onIdTokenChanged": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.q),
-/* harmony export */   "parseActionCodeURL": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ae),
-/* harmony export */   "prodErrorMap": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.C),
-/* harmony export */   "reauthenticateWithCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__._),
-/* harmony export */   "reauthenticateWithPhoneNumber": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.r),
-/* harmony export */   "reauthenticateWithPopup": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.e),
-/* harmony export */   "reauthenticateWithRedirect": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.h),
-/* harmony export */   "reload": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.am),
-/* harmony export */   "sendEmailVerification": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ab),
-/* harmony export */   "sendPasswordResetEmail": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a0),
-/* harmony export */   "sendSignInLinkToEmail": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a7),
-/* harmony export */   "setPersistence": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.p),
-/* harmony export */   "signInAnonymously": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.X),
-/* harmony export */   "signInWithCredential": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.Y),
-/* harmony export */   "signInWithCustomToken": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.$),
-/* harmony export */   "signInWithEmailAndPassword": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a6),
-/* harmony export */   "signInWithEmailLink": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a9),
-/* harmony export */   "signInWithPhoneNumber": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.s),
-/* harmony export */   "signInWithPopup": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.c),
-/* harmony export */   "signInWithRedirect": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.f),
-/* harmony export */   "signOut": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.y),
-/* harmony export */   "unlink": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ak),
-/* harmony export */   "updateCurrentUser": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.x),
-/* harmony export */   "updateEmail": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ag),
-/* harmony export */   "updatePassword": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ah),
-/* harmony export */   "updatePhoneNumber": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.u),
-/* harmony export */   "updateProfile": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.af),
-/* harmony export */   "useDeviceLanguage": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.w),
-/* harmony export */   "verifyBeforeUpdateEmail": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.ac),
-/* harmony export */   "verifyPasswordResetCode": () => (/* reexport safe */ _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__.a4)
+/* harmony export */   "ActionCodeOperation": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.A),
+/* harmony export */   "ActionCodeURL": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ad),
+/* harmony export */   "AuthCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.H),
+/* harmony export */   "AuthErrorCodes": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.D),
+/* harmony export */   "EmailAuthCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.I),
+/* harmony export */   "EmailAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.M),
+/* harmony export */   "FacebookAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.N),
+/* harmony export */   "FactorId": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.F),
+/* harmony export */   "GithubAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.T),
+/* harmony export */   "GoogleAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.Q),
+/* harmony export */   "OAuthCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.J),
+/* harmony export */   "OAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.U),
+/* harmony export */   "OperationType": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.O),
+/* harmony export */   "PhoneAuthCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.K),
+/* harmony export */   "PhoneAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.P),
+/* harmony export */   "PhoneMultiFactorGenerator": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.m),
+/* harmony export */   "ProviderId": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.o),
+/* harmony export */   "RecaptchaVerifier": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.R),
+/* harmony export */   "SAMLAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.V),
+/* harmony export */   "SignInMethod": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.S),
+/* harmony export */   "TwitterAuthProvider": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.W),
+/* harmony export */   "applyActionCode": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a2),
+/* harmony export */   "beforeAuthStateChanged": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.t),
+/* harmony export */   "browserLocalPersistence": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.b),
+/* harmony export */   "browserPopupRedirectResolver": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.k),
+/* harmony export */   "browserSessionPersistence": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a),
+/* harmony export */   "checkActionCode": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a3),
+/* harmony export */   "confirmPasswordReset": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a1),
+/* harmony export */   "connectAuthEmulator": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.G),
+/* harmony export */   "createUserWithEmailAndPassword": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a5),
+/* harmony export */   "debugErrorMap": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.B),
+/* harmony export */   "deleteUser": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.z),
+/* harmony export */   "fetchSignInMethodsForEmail": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.aa),
+/* harmony export */   "getAdditionalUserInfo": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.al),
+/* harmony export */   "getAuth": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.n),
+/* harmony export */   "getIdToken": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ai),
+/* harmony export */   "getIdTokenResult": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.aj),
+/* harmony export */   "getMultiFactorResolver": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.an),
+/* harmony export */   "getRedirectResult": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.j),
+/* harmony export */   "inMemoryPersistence": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.L),
+/* harmony export */   "indexedDBLocalPersistence": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.i),
+/* harmony export */   "initializeAuth": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.E),
+/* harmony export */   "isSignInWithEmailLink": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a8),
+/* harmony export */   "linkWithCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.Z),
+/* harmony export */   "linkWithPhoneNumber": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.l),
+/* harmony export */   "linkWithPopup": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.d),
+/* harmony export */   "linkWithRedirect": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.g),
+/* harmony export */   "multiFactor": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ao),
+/* harmony export */   "onAuthStateChanged": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.v),
+/* harmony export */   "onIdTokenChanged": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.q),
+/* harmony export */   "parseActionCodeURL": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ae),
+/* harmony export */   "prodErrorMap": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.C),
+/* harmony export */   "reauthenticateWithCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__._),
+/* harmony export */   "reauthenticateWithPhoneNumber": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.r),
+/* harmony export */   "reauthenticateWithPopup": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.e),
+/* harmony export */   "reauthenticateWithRedirect": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.h),
+/* harmony export */   "reload": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.am),
+/* harmony export */   "sendEmailVerification": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ab),
+/* harmony export */   "sendPasswordResetEmail": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a0),
+/* harmony export */   "sendSignInLinkToEmail": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a7),
+/* harmony export */   "setPersistence": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.p),
+/* harmony export */   "signInAnonymously": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.X),
+/* harmony export */   "signInWithCredential": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.Y),
+/* harmony export */   "signInWithCustomToken": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.$),
+/* harmony export */   "signInWithEmailAndPassword": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a6),
+/* harmony export */   "signInWithEmailLink": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a9),
+/* harmony export */   "signInWithPhoneNumber": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.s),
+/* harmony export */   "signInWithPopup": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.c),
+/* harmony export */   "signInWithRedirect": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.f),
+/* harmony export */   "signOut": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.y),
+/* harmony export */   "unlink": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ak),
+/* harmony export */   "updateCurrentUser": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.x),
+/* harmony export */   "updateEmail": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ag),
+/* harmony export */   "updatePassword": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ah),
+/* harmony export */   "updatePhoneNumber": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.u),
+/* harmony export */   "updateProfile": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.af),
+/* harmony export */   "useDeviceLanguage": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.w),
+/* harmony export */   "verifyBeforeUpdateEmail": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.ac),
+/* harmony export */   "verifyPasswordResetCode": () => (/* reexport safe */ _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__.a4)
 /* harmony export */ });
-/* harmony import */ var _index_3b632d0b_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-3b632d0b.js */ "./node_modules/@firebase/auth/dist/esm2017/index-3b632d0b.js");
+/* harmony import */ var _index_ccf9d100_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index-ccf9d100.js */ "./node_modules/@firebase/auth/dist/esm2017/index-ccf9d100.js");
 /* harmony import */ var _firebase_util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @firebase/util */ "./node_modules/@firebase/util/dist/index.esm2017.js");
 /* harmony import */ var _firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @firebase/app */ "./node_modules/@firebase/app/dist/esm/index.esm2017.js");
 /* harmony import */ var _firebase_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @firebase/logger */ "./node_modules/@firebase/logger/dist/esm/index.esm2017.js");
@@ -11689,7 +11698,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var name = "firebase";
-var version = "9.8.1";
+var version = "9.8.2";
 
 /**
  * @license
@@ -12185,7 +12194,7 @@ function isVersionServiceProvider(provider) {
 }
 
 const name$o = "@firebase/app";
-const version$1 = "0.7.24";
+const version$1 = "0.7.25";
 
 /**
  * @license
@@ -12252,7 +12261,7 @@ const name$2 = "@firebase/firestore";
 const name$1 = "@firebase/firestore-compat";
 
 const name = "firebase";
-const version = "9.8.1";
+const version = "9.8.2";
 
 /**
  * @license
@@ -14093,7 +14102,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var config = {
-	/* your config data */
+    apiKey: "AIzaSyCoR1FGtRhfHG_IeYvZKgYJdRhxfEqiOdc",
+    authDomain: "cewf-id.firebaseapp.com",
+    projectId: "cewf-id",
+    storageBucket: "cewf-id.appspot.com",
+    messagingSenderId: "399762600225",
+    appId: "1:399762600225:web:9b21abc20016f5f2280e60"
 };
 (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(config);
 
@@ -14105,7 +14119,7 @@ function initApp() {
 	});
 }
 
-chrome.browserAction.onClicked.addListener(function () {
+chrome.action.onClicked.addListener(function () {
 	initApp();
 });
 
