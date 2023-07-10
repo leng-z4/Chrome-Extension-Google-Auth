@@ -11,7 +11,7 @@
     "license": "ISC",
     "dependencies": {
         "firebase": "^9.8.2",
-        "webpack": "^5.73.0"
+        "webpack": "^5.76.0"
     },
     "devDependencies": {
         "copy-webpack-plugin": "^11.0.0",
